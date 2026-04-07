@@ -1,0 +1,2 @@
+key,conn_type,CONNECTION_URL,PROVISIONING_URL,BIND_USER,IP_ADDRESS,LDAP_PROTOCOL,email_template,forest_list,search_filter,object_filter,is_ssl
+ADSI_CORP_CONN,ADSI,http://ad.contoso.com,http://ad.contoso.com,sav_admin,127.0.0.1,ldaps,,x,y,z,TRUE

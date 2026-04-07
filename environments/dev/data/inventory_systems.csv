@@ -1,0 +1,4 @@
+key,type,sec_display_name,security_system_name,sec_description
+AD_CORP,STD,Corporate Active Directory,AD_CORP,Active Directory Platform
+SAP_QA,SAP,SAP Quality,SAP_QA,SAP SC1 Desc
+SAP_DEV,SAP,SAP Dev,SAP_DEV,SAP RC1 Desc

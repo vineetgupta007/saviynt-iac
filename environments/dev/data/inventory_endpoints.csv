@@ -1,0 +1,4 @@
+key,display_name,associated_system,correlation_rule,cp1_label
+AD_CORP_EP,Corporate AD Endpoint,AD_CORP,$${user.username},UserNameLabel
+SAP_PRD_EP,SAP Production Endpoint,SAP_QA,$${user.username},UserNameLabel
+SAP_QAS_EP,SAP Quality Endpoint,SAP_DEV,$${user.username},UserNameLabel
