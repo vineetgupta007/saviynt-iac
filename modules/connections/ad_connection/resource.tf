@@ -61,6 +61,7 @@ variable "PROVISIONING_URL" {
 }
 resource "saviynt_adsi_connection_resource" "adsi_connection" {
   connection_name     = var.adsi_connection_name
+  connectionName      = var.adsi_connection_name
   email_template      = var.adsi_email_template
   url                 = format("%s://%s", var.LDAP_PROTOCOL, var.IP_ADDRESS)
   password            = var.PASSWORD
