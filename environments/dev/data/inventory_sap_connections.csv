@@ -1,0 +1,3 @@
+key,jco_ashost,jco_sysnr,jco_client,jco_user,jco_r3name,jco_mshost,jco_msserv,jco_group,system_name,prov_jco_ashost,prov_jco_sysnr,prov_jco_client,prov_jco_user,prov_jco_mshost,prov_jco_msserv
+BWDCLNT105,sapuxhbwd.acme.com,1,105,RFC_IAM_CONN,,,,,BWD-105,sapuxhbwd.acme.com,1,105,RFC_IAM_CONN,,
+CFDCLNT100,sapuxhbwd.acme.com,1,105,RFC_IAM_CONN,,,,,BWD-105,sapuxhbwd.acme.com,1,105,RFC_IAM_CONN,,a

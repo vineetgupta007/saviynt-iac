@@ -19,6 +19,7 @@ locals {
   sys_csv  = csvdecode(file("${path.module}/data/inventory_systems.csv"))
   ep_csv   = csvdecode(file("${path.module}/data/inventory_endpoints.csv"))
   conn_csv = csvdecode(file("${path.module}/data/inventory_adsi_connections.csv"))
+  sap_conn_csv = csvdecode(file("${path.module}/data/inventory_sap_connections.csv"))
 
   # Split systems into two groups based on type
   std_systems = { for s in local.sys_csv : s.key => s if s.type != "SAP" }
@@ -88,4 +89,37 @@ module "adsi_connections" {
   VAULT_CONFIG     = "your_vault_config_name"
 
   #depends_on = [module.endpoints]
+}
+
+# 5. Connections (SAP) - NEW MODULE
+module "sap_connections" {
+  # Use for_each to loop through each row of your SAP connections CSV
+  for_each = { for c in local.sap_conn_csv : c.key => c }
+
+  source = "../../modules/connections/sap_connection"
+
+  # IMPORTANT: Match the values on the right (e.g., each.value.jco_ashost)
+  # to the actual column names in your 'inventory_sap_connections.csv' file.
+  sap_connection_name = each.value.key
+  jco_ashost          = each.value.jco_ashost
+  jco_sysnr           = each.value.jco_sysnr
+  jco_client          = each.value.jco_client
+  jco_user            = each.value.jco_user
+  password            = var.connection_passwords[each.key] # Assumes password is in a map variable
+  jco_r3name          = each.value.jco_r3name
+  jco_mshost          = each.value.jco_mshost
+  jco_msserv          = each.value.jco_msserv
+  jco_group           = each.value.jco_group
+  system_name         = each.value.system_name
+  prov_jco_ashost     = each.value.prov_jco_ashost
+  prov_jco_client     = each.value.prov_jco_client
+  prov_jco_mshost     = each.value.prov_jco_mshost
+  prov_jco_msserv     = each.value.prov_jco_msserv
+  prov_jco_sysnr      = each.value.prov_jco_sysnr
+  prov_jco_user       = each.value.prov_jco_user
+  prov_password       = var.connection_passwords[each.key] # Assumes password is in a map variable
+
+  # Add other required variables from your sap_connection module here...
+
+  depends_on = [module.sec_system_sap]
 }

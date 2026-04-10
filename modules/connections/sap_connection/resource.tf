@@ -9,27 +9,27 @@ terraform {
   }
 }
 
-resource "saviynt_sap_connection_resource" "ss" {
-  connection_name             = "Terraform_Sap_Connection"
+resource "saviynt_sap_connection_resource" "sap" {
+  connection_name             = var.sap_connection_name
   message_server              = "FALSE"
-  jco_ashost                  = "<jco_ashost>"
-  jco_sysnr                   = "<jco_sysnr>"
-  jco_client                  = "<jco_client>"
-  jco_user                    = "<jco_user>"
-  password                    = "<password>"
+  jco_ashost                  = var.jco_ashost
+  jco_sysnr                   = var.jco_sysnr
+  jco_client                  = var.jco_client
+  jco_user                    = var.jco_user
+  password                    = var.password
   jco_lang                    = "EN"
-  jco_r3name                  = "<jco_r3name>"
-  jco_mshost                  = "<jco_mshost>"
-  jco_msserv                  = "<jco_msserv>"
-  jco_group                   = "<jco_group>"
+  jco_r3name                  = var.jco_r3name
+  jco_mshost                  = var.jco_mshost
+  jco_msserv                  = var.jco_msserv
+  jco_group                   = var.jco_group
   snc                         = "false"
   jco_snc_mode                = "0"
   jco_snc_partnername         = ""
   jco_snc_myname              = ""
   jco_snc_library             = ""
   jco_snc_qop                 = ""
-  tables                      = "<tables>"
-  system_name                 = "<system_name>"
+  tables                      = "USR02, AGR_AGRS, AGR_TEXTS, AGR_DEFINE, AGR_USERS, USORG, UST04"
+  system_name                 = var.system_name
   terminated_user_group       = "SAP_TERMINATED"
   terminated_user_role_action = "REMOVE"
   user_import_json = jsonencode({
@@ -92,15 +92,15 @@ resource "saviynt_sap_connection_resource" "ss" {
       REF_USER = "$${referenceid}"
     }
   })
-  prov_jco_ashost           = "<prov_jco_ashost>"
-  prov_jco_sysnr            = "<prov_jco_sysnr>"
-  prov_jco_client           = "<prov_jco_client>"
-  prov_jco_user             = "<prov_jco_user>"
-  prov_password             = "<prov_password>"
+  prov_jco_ashost           = var.prov_jco_ashost
+  prov_jco_sysnr            = var.prov_jco_sysnr
+  prov_jco_client           = var.prov_jco_client
+  prov_jco_user             = var.prov_jco_user
+  prov_password             = var.prov_password
   prov_jco_lang             = "EN"
   prov_jco_r3name           = "QAS"
-  prov_jco_mshost           = "<prov_jco_mshost>"
-  prov_jco_msserv           = "<prov_jco_msserv>"
+  prov_jco_mshost           = var.prov_jco_mshost
+  prov_jco_msserv           = var.prov_jco_msserv
   prov_jco_group            = "PROV_GROUP"
   prov_cua_enabled          = "false"
   prov_cua_snc              = "false"
